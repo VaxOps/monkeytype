@@ -56,6 +56,7 @@ function Banner(props: BannerType): JSXElement {
           fallback={
             <button
               type="button"
+              aria-label="Dismiss banner"
               class="text -mr-2 self-center text-bg hover:text-text"
               onClick={() => {
                 remove();

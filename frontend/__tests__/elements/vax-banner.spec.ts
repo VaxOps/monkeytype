@@ -26,7 +26,7 @@ describe("persistent practice banner", () => {
   });
 
   it.each(Array.from({ length: 21 }, (_, index) => index))(
-    "always shows selectable message %s without a close button",
+    "always shows dismissible message %s",
     (index) => {
       const messages = [
         ...practiceBannerMessages,
@@ -37,9 +37,9 @@ describe("persistent practice banner", () => {
       expect(getBanners()).toHaveLength(1);
       expect(getBanners()[0]).toMatchObject({
         level: "success",
-        important: true,
         text: messages[index],
       });
+      expect(getBanners()[0]?.important).not.toBe(true);
     },
   );
 

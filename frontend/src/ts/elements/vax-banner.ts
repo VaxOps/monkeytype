@@ -7,7 +7,6 @@ export function show(): void {
   const messages = [...practiceBannerMessages, ...envConfig.vaxBannerMessages];
   addBanner({
     level: "success",
-    important: true,
     text: messages[Math.floor(Math.random() * messages.length)] ?? "",
   });
 }
