@@ -6,7 +6,10 @@
     "noEmit": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "virtual:env-config": ["../src/ts/types/virtual-env-config.d.ts"]
+    }
   },
   "files": ["vitest.d.ts"],
   "include": [

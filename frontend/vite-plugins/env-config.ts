@@ -4,6 +4,40 @@ import { EnvConfig } from "virtual:env-config";
 const virtualModuleId = "virtual:env-config";
 const resolvedVirtualModuleId = `\0${virtualModuleId}`;
 
+const defaultVaxBannerMessages = [
+  "vax types faster than his shadow.",
+  "the spacebar works overtime for vax.",
+  "vax called. your keyboard wants a rematch.",
+  "somewhere, vax just broke the sound barrier.",
+  "this keyboard has been blessed by vax.",
+];
+
+export function parseVaxBannerMessages(value: string | undefined): string[] {
+  if (value === undefined || value.trim() === "") {
+    return [...defaultVaxBannerMessages];
+  }
+  let messages: unknown;
+  try {
+    messages = JSON.parse(value);
+  } catch {
+    throw new Error(
+      "VAX_BANNER_MESSAGES must be a JSON array of nonempty strings",
+    );
+  }
+  if (
+    !Array.isArray(messages) ||
+    !messages.every(
+      (message: unknown) =>
+        typeof message === "string" && message.trim() !== "",
+    )
+  ) {
+    throw new Error(
+      "VAX_BANNER_MESSAGES must be a JSON array of nonempty strings",
+    );
+  }
+  return (messages as string[]).map((message) => message.trim());
+}
+
 function fallback(value: string | undefined | null, fallback: string): string {
   if (value === null || value === undefined || value === "") return fallback;
   return value;
@@ -14,6 +48,9 @@ export function envConfig(options: {
   clientVersion: string;
   env: Record<string, string>;
 }): Plugin {
+  const vaxBannerMessages = parseVaxBannerMessages(
+    options.env["VAX_BANNER_MESSAGES"],
+  );
   return {
     name: "virtual-env-config",
     transformIndexHtml: {
@@ -36,6 +73,7 @@ export function envConfig(options: {
       if (id === resolvedVirtualModuleId) {
         const devConfig: EnvConfig = {
           isDevelopment: true,
+          vaxBannerMessages,
           authProvider:
             options.env["AUTH_PROVIDER"] === "local" ? "local" : "firebase",
           backendUrl: fallback(
@@ -50,6 +88,7 @@ export function envConfig(options: {
 
         const prodConfig: EnvConfig = {
           isDevelopment: false,
+          vaxBannerMessages,
           authProvider:
             options.env["AUTH_PROVIDER"] === "local" ? "local" : "firebase",
           backendUrl: fallback(

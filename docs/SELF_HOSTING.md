@@ -120,6 +120,17 @@ Local accounts use email addresses as login identifiers; ownership is not verifi
 
 Change feature settings in `docker/backend-configuration.local.json` and restart the backend. Set `HTTP_PORT` and matching `BASE_URL` when changing the localhost port. Registration can be disabled with `users.signUp`; existing users can still log in.
 
+The top accent banner appears on 10% of page loads, choosing one of five vax sentences. Customize its text with `VAX_BANNER_MESSAGES`, a JSON array of nonempty strings; leave unset/blank for defaults, or use `[]` to disable it. These messages are never added to the typing vocabulary. The separate rare `vax` word remains at 0.2% per eligible English word.
+
+For an explicit local environment file, copy `docker/example.local.env` to `docker/.env`, edit it, then rebuild and deploy from the repository root:
+
+```sh
+docker compose --env-file docker/.env -f docker/docker-compose.local.yml build
+docker compose --env-file docker/.env -f docker/docker-compose.local.yml up -d --no-build --wait --wait-timeout 180
+```
+
+Banner text is baked into the frontend image: changing the environment file requires rebuilding. Invalid JSON or non-string/blank messages fail the build. For plain Docker builds, pass `--build-arg VAX_BANNER_MESSAGES='["your vax sentence"]'` when building the frontend target.
+
 XP uses PromptPractice's existing calculation with `users.xp.enabled=true` and `gainMultiplier=1`. Eligible saved tests award XP; zen mode does not. Daily/streak/funbox bonuses and weekly XP leaderboards remain configurable and are disabled in this preset. Previously saved tests are not awarded XP retroactively.
 
 Daily rankings update when an eligible result is saved; all-time rankings refresh approximately every 15 minutes. Internet-dependent test sources such as Wikipedia and poetry are unavailable on a closed network.

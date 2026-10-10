@@ -4,6 +4,7 @@ export type EnvConfig = {
   clientVersion: string;
   recaptchaSiteKey: string;
   authProvider: "firebase" | "local";
+  vaxBannerMessages: string[];
   quickLoginEmail: string | undefined;
   quickLoginPassword: string | undefined;
 };

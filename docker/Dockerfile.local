@@ -15,6 +15,8 @@ COPY .oxlintrc.json .oxlintrc.json
 COPY docker/frontend/firebase-config-live.ts frontend/src/ts/constants/firebase-config.ts
 COPY docker/frontend/firebase-config-live.ts frontend/src/ts/constants/firebase-config-live.ts
 ENV AUTH_PROVIDER=local BACKEND_URL=/api RECAPTCHA_SITE_KEY=
+ARG VAX_BANNER_MESSAGES=
+ENV VAX_BANNER_MESSAGES=$VAX_BANNER_MESSAGES
 RUN pnpm turbo run build --filter=@monkeytype/frontend --filter=@monkeytype/backend
 RUN pnpm deploy --legacy --filter @monkeytype/backend --prod /prod/backend
 # Legacy deploy retains workspace links pointing outside the exported directory.

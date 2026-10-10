@@ -50,7 +50,13 @@
     },
     "@monkeytype/frontend#build": {
       "dependsOn": ["^build"],
-      "env": ["BACKEND_URL", "RECAPTCHA_SITE_KEY", "SENTRY", "AUTH_PROVIDER"],
+      "env": [
+        "BACKEND_URL",
+        "RECAPTCHA_SITE_KEY",
+        "SENTRY",
+        "AUTH_PROVIDER",
+        "VAX_BANNER_MESSAGES"
+      ],
       "outputs": ["dist/**"]
     },
     "@monkeytype/frontend#dev": {
@@ -59,7 +65,8 @@
         "BACKEND_URL",
         "RECAPTCHA_SITE_KEY",
         "SERVER_OPEN",
-        "AUTH_PROVIDER"
+        "AUTH_PROVIDER",
+        "VAX_BANNER_MESSAGES"
       ],
       "persistent": true
     },

@@ -8,6 +8,8 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.local
       target: frontend
+      args:
+        VAX_BANNER_MESSAGES: ${VAX_BANNER_MESSAGES:-}
     ports:
       - "127.0.0.1:${HTTP_PORT:-8080}:80"
     networks: [local, frontend]

@@ -11,7 +11,8 @@ In plan mode, before writing up a plan, ask clarifying questions if needed. At t
 
 - Visible name: `PromptPractice`. Existing package names, Docker services/image tags, database/session identifiers and real external URLs retain their upstream identities. Preserve contributor credits.
 - Work on `codex/promptpractice-vax`. Do not create an upstream PR or push to `origin`.
-- Easter eggs: standard `english` time/word tests can inject `vax` with probability `0.002` per word, excluding challenges/funboxes and nearby repeats. Repeated tests preserve their text. `vax is the goat` is a dismissible top accent banner, probability `0.05` per page load; never vocabulary. Ads, video-ad scripts/slots/commands, enable-ad controls and merch banner are removed. Confirm proposed easter egg changes with the user before implementing.
+- Easter eggs: standard `english` time/word tests can inject `vax` with probability `0.002` per word, excluding challenges/funboxes and nearby repeats. Repeated tests preserve their text. A dismissible top accent banner appears with probability `0.1` per page load, randomly choosing one of five user-approved vax sentences; never vocabulary. Ads, video-ad scripts/slots/commands, enable-ad controls and merch banner are removed. Confirm proposed easter egg changes with the user before implementing.
+- Banner messages: `VAX_BANNER_MESSAGES` is a frontend build-time JSON string array, passed through Compose build args, Docker builder environment, Turbo build/dev environment and the Vite virtual config. Unset/blank uses approved defaults; `[]` disables; invalid values fail the build. Optional template: `docker/example.local.env`. Copy to `docker/.env`, edit, then use `docker compose --env-file docker/.env -f docker/docker-compose.local.yml build` and the matching `up -d --no-build --wait --wait-timeout 180`. Changes require rebuild/redeploy. Header subtext is raised 6px above the capital letters.
 - Docker Desktop must be running in Linux-container mode. From the repository root:
 
 ```sh
@@ -32,6 +33,7 @@ docker compose -f docker/docker-compose.local.yml ps
 pnpm vitest run frontend/__tests__/test/vax-easter-egg.spec.ts
 pnpm vitest run frontend/__tests__/test/words-generator.spec.ts
 pnpm vitest run frontend/__tests__/elements/vax-banner.spec.ts
+pnpm vitest run frontend/__tests__/vite-plugins/vax-banner-config.spec.ts
 pnpm vitest run frontend/__tests__/root/config-metadata.spec.ts
 pnpm oxlint --type-aware --type-check --format agent
 ```
@@ -44,3 +46,10 @@ pnpm oxlint --type-aware --type-check --format agent
 - All seven HTTP checks above returned 200. Manifest/title/API docs show PromptPractice. Same-origin CSP present. Full `pnpm oxlint --type-aware --type-check --format agent` passed after removing an unnecessary assertion in the root Vitest config. Relevant tests: 103 passed across five files (12 word-chance, 3 generator/repeat, 3 banner, 55 metadata, 30 configuration).
 - Browser: yellow banner appeared naturally on third reload and closed correctly; zero ad slots. `vax` appeared at word index 9 after four fresh tests; phrase absent from words. Completed English time-15 test: 61.56 WPM, 100% accuracy; saved to the existing `OfflineTester` profile and verified in the daily leaderboard. Repeat matched all original words. Settings/About/all-time and daily leaderboards worked. Desktop/mobile layouts checked; no browser-console errors.
 - Export: `C:/Users/user/projects/promptpractice-artifacts/promptpractice-app-images.tar` (frontend/backend only). Screenshots in the same directory: `promptpractice-banner.jpg`, `promptpractice-vax-word.jpg`, `promptpractice-result.jpg`, `promptpractice-mobile.jpg`. No images published or upstream PR created.
+
+### Verified follow-up: 10 October 2026
+
+- User approved all five proposed sentences before implementation; subsequently requested 10% instead of 25%. Defaults: `vax types faster than his shadow.`, `the spacebar works overtime for vax.`, `vax called. your keyboard wants a rematch.`, `somewhere, vax just broke the sound barrier.`, `this keyboard has been blessed by vax.`
+- Rebuilt both images with `docker compose -f docker/docker-compose.local.yml build`; deployed with the documented `up` command. All four containers healthy; five HTTP routes (`/`, `/api/`, `/api/configuration`, `/languages/english.json`, `/manifest.json`) returned 200. Existing local session restored. Compose's explicit example environment forwards all five messages. Relevant tests: 9 banner + 12 environment parsing passed; full lint/typecheck passed. Tests cover the exact 10% boundary, all five selections, custom/empty lists and invalid JSON/value rejection.
+- Actual browser: header subtext raised 6px and visibly clears capitals at desktop size; mobile layout checked. New banner appeared naturally on the second verification reload, survived navigation to settings, and dismissed correctly. Zero ad slots; no console errors. Completed English words-10 test: 149.67 WPM, 100% accuracy; repeat matched all ten words. Restored time-15 mode and default viewport.
+- Refreshed image archive: `C:/Users/user/projects/promptpractice-artifacts/promptpractice-app-images.tar`, 148414464 bytes; SHA256 `FC15FE041B44BE9C549236F4E144BE251EBBD49B451AF3D8E92D0573DC30E88A`. New screenshots: `promptpractice-banner-10-percent.jpg`, `promptpractice-result-updated.jpg`, `promptpractice-mobile-updated.jpg`. No push or PR.
