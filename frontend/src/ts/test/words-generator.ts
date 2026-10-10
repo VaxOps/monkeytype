@@ -34,6 +34,7 @@ import {
   setCurrentQuote,
 } from "../states/test";
 import * as TestWords from "./test-words";
+import { applyVaxEasterEgg } from "./vax-easter-egg";
 
 //pin implementation
 const random = Math.random;
@@ -887,6 +888,12 @@ export async function getNextWord(
     }
     randomWord = randomWord.replace(/ +/g, " ");
     randomWord = randomWord.replace(/(^ )|( $)/g, "");
+
+    randomWord = applyVaxEasterEgg(
+      randomWord,
+      previousWordRaw,
+      previousWord2Raw,
+    );
 
     randomWord = getFunboxWord(randomWord, wordIndex, currentWordset);
 

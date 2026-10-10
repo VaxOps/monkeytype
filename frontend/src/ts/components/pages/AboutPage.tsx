@@ -11,7 +11,6 @@ import { getActivePage } from "../../states/core";
 import { showModal } from "../../states/modals";
 import { getTheme } from "../../states/theme";
 import { getNumberWithMagnitude } from "../../utils/numbers";
-import { Advertisement } from "../common/Advertisement";
 import AsyncContent from "../common/AsyncContent";
 import { Button } from "../common/Button";
 import { ChartJs } from "../common/ChartJs";
@@ -190,11 +189,11 @@ export function AboutPage(): JSXElement {
         <section>
           <H2 fa={{ icon: "fa-info-circle" }} text="about" />
           <p>
-            Monkeytype is a minimalistic and customizable typing test. It
+            PromptPractice is a minimalistic and customizable typing test. It
             features many test modes, an account system to save your typing
             speed history, and user-configurable features such as themes,
-            sounds, a smooth caret, and more. Monkeytype attempts to emulate the
-            experience of natural keyboard typing during a typing test, by
+            sounds, a smooth caret, and more. PromptPractice attempts to emulate
+            the experience of natural keyboard typing during a typing test, by
             unobtrusively presenting the text prompts and displaying typed
             characters in-place, providing straightforward, real-time feedback
             on typos, speed, and accuracy.
@@ -253,7 +252,6 @@ export function AboutPage(): JSXElement {
             </dd>
           </dl>
         </section>
-        <Advertisement id="ad-about-1" visible="sellout" />
         <section>
           <H3 fa={{ icon: "fa-chart-area" }} text="results screen" />
           <p>
@@ -355,8 +353,7 @@ export function AboutPage(): JSXElement {
               href="#supporters_title"
               class="p-0 pt-2 pr-2 pb-2"
             />
-            who helped financially by donating, enabling optional ads or buying
-            merch
+            who helped financially by donating or buying merch
           </p>
           <p>
             <Button
@@ -369,7 +366,6 @@ export function AboutPage(): JSXElement {
             adding themes and more
           </p>
         </section>
-        <Advertisement id="ad-about-2" visible="sellout" />
         <div></div>
         <section>
           <H2

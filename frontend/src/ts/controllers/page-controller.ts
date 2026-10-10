@@ -15,7 +15,6 @@ import {
   updateLoadingPageText,
 } from "../states/loading-page";
 import * as PageTransition from "../legacy-states/page-transition";
-import * as AdController from "../controllers/ad-controller";
 import * as Focus from "../test/focus";
 import Page, {
   PageName,
@@ -184,7 +183,7 @@ function updateTitle(nextPage: { id: string; display?: string }): void {
   } else {
     const titleString =
       nextPage.display ?? Strings.capitalizeFirstLetterOfEachWord(nextPage.id);
-    Misc.updateTitle(`${titleString} | Monkeytype`);
+    Misc.updateTitle(`${titleString} | PromptPractice`);
   }
 }
 
@@ -412,7 +411,6 @@ export async function change(
 
   //wrapup
   PageTransition.set(false);
-  void AdController.reinstate();
   return true;
 }
 

@@ -20,6 +20,7 @@ import { typedKeys } from "@monkeytype/util/objects";
 // eventually this file should be fully merged into config metadata, probably under the 'commandline' property
 
 type ConfigKeysWithoutCommands =
+  | "ads"
   | "minWpmCustomSpeed"
   | "minAccCustom"
   | "minBurstCustomSpeed"
@@ -762,13 +763,6 @@ export const commandlineConfigMetadata: CommandlineConfigMetadataObject = {
     },
   },
   monkey: {
-    subgroup: {
-      options: "fromSchema",
-    },
-  },
-
-  //danger zone
-  ads: {
     subgroup: {
       options: "fromSchema",
     },

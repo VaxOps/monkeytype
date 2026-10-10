@@ -1,4 +1,4 @@
-# Monkeytype Self Hosting
+# PromptPractice Self Hosting
 
 <!-- TOC ignore:true -->
 
@@ -6,7 +6,7 @@
 
 <!-- TOC -->
 
-- [Monkeytype Self Hosting](#monkeytype-self-hosting)
+- [PromptPractice Self Hosting](#promptpractice-self-hosting)
   - [Table of contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Quickstart](#quickstart)
@@ -41,7 +41,7 @@
 
 ### Hosting over the network (HTTPS)
 
-If you plan to access your self-hosted Monkeytype instance over a local network or the internet (not using `localhost`), **you must serve it over HTTPS**. Modern browsers restrict key web features, such as `crypto.randomUUID`, to secure contexts. Accessing the site via HTTP over a network will cause the frontend to crash with errors like `Uncaught TypeError: crypto.randomUUID is not a function`.
+If you plan to access your self-hosted PromptPractice instance over a local network or the internet (not using `localhost`), **you must serve it over HTTPS**. Modern browsers restrict key web features, such as `crypto.randomUUID`, to secure contexts. Accessing the site via HTTP over a network will cause the frontend to crash with errors like `Uncaught TypeError: crypto.randomUUID is not a function`.
 
 #### Enable HTTPS
 
@@ -65,7 +65,7 @@ Ensure you configure the frontend to talk to your secure backend URL by followin
 
 1. **Update the frontend and backend URL:** Set `DOMAIN` and `BASE_URL` correctly, usually `BASE_URL` is `https://DOMAIN`.
 2. **Do not include a trailing slash:** Ensure the URL does not end with a `/` (e.g., use `https://yourdomain.com`, **not** `https://yourdomain.com/`). A trailing slash will cause `404 Not Found` errors due to double slashes in the API calls (like `//configuration`).
-3. **Force container recreation:** Monkeytype is a Single Page Application (SPA), meaning environment variables are baked into the static JavaScript files during startup. If you change your `.env`, you must completely recreate the container for the changes to apply:
+3. **Force container recreation:** PromptPractice is a Single Page Application (SPA), meaning environment variables are baked into the static JavaScript files during startup. If you change your `.env`, you must completely recreate the container for the changes to apply:
 
 ```bash
 docker compose up -d --force-recreate
@@ -77,7 +77,7 @@ docker compose up -d --force-recreate
 
 ## Security
 
-Do not expose the Monkeytype backend directly to the internet. Instead, place it behind a reverse proxy and configure the backend to only accept connections from the reverse proxy.
+Do not expose the PromptPractice backend directly to the internet. Instead, place it behind a reverse proxy and configure the backend to only accept connections from the reverse proxy.
 
 The backend's built-in rate limiting is based on the authenticated user's `uid` or, for unauthenticated requests, the client's IP address.
 
@@ -120,7 +120,7 @@ Local accounts use email addresses as login identifiers; ownership is not verifi
 
 Change feature settings in `docker/backend-configuration.local.json` and restart the backend. Set `HTTP_PORT` and matching `BASE_URL` when changing the localhost port. Registration can be disabled with `users.signUp`; existing users can still log in.
 
-XP uses Monkeytype's existing calculation with `users.xp.enabled=true` and `gainMultiplier=1`. Eligible saved tests award XP; zen mode does not. Daily/streak/funbox bonuses and weekly XP leaderboards remain configurable and are disabled in this preset. Previously saved tests are not awarded XP retroactively.
+XP uses PromptPractice's existing calculation with `users.xp.enabled=true` and `gainMultiplier=1`. Eligible saved tests award XP; zen mode does not. Daily/streak/funbox bonuses and weekly XP leaderboards remain configurable and are disabled in this preset. Previously saved tests are not awarded XP retroactively.
 
 Daily rankings update when an eligible result is saved; all-time rankings refresh approximately every 15 minutes. Internet-dependent test sources such as Wikipedia and poetry are unavailable on a closed network.
 
@@ -164,7 +164,7 @@ For access from other computers, terminate HTTPS at an internal reverse proxy us
 - whitelist your domain
   - In the Firebase console, go to `Authentication > Sign-in method`
   - Scroll to `Authorized domains`
-  - Click `Add domain` and enter the domain where you’ll host the Monkeytype frontend (e.g. `localhost`)
+  - Click `Add domain` and enter the domain where you’ll host the PromptPractice frontend (e.g. `localhost`)
 - generate service account
   - go to your project settings by clicking the `⚙` icon in the sidebar, then `Project settings`
   - navigate to the `Service accounts` tab

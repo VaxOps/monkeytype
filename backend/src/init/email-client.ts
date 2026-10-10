@@ -17,18 +17,18 @@ type EmailMetadata = {
 
 const templates: Record<EmailType, EmailMetadata> = {
   verify: {
-    subject: "Verify your Monkeytype account",
+    subject: "Verify your PromptPractice account",
     templateName: "verification.html",
   },
   resetPassword: {
-    subject: "Reset your Monkeytype password",
+    subject: "Reset your PromptPractice password",
     templateName: "reset-password.html",
   },
 };
 
 let transportInitialized = false;
 let transporter: nodemailer.Transporter;
-let emailFrom = "Monkeytype <noreply@monkeytype.com>";
+let emailFrom = "PromptPractice <noreply@monkeytype.com>";
 
 export function isInitialized(): boolean {
   return transportInitialized;

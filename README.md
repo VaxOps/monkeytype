@@ -1,4 +1,5 @@
-[![](https://github.com/monkeytypegame/monkeytype/blob/master/frontend/static/images/githubbanner2.png?raw=true)](https://monkeytype.com/)
+# PromptPractice
+![PromptPractice](frontend/static/images/promptpractice-social.png)
 <br />
 
 [![AnimeJs](https://img.shields.io/badge/Anime.js-ff4b4b?style=for-the-badge&logo=animedotjs&logoColor=white)](https://animejs.com/)&nbsp;
@@ -25,11 +26,15 @@
 
 # About
 
-Monkeytype is a minimalistic and customizable [typing test](https://www.monkeytype.com). It features many test modes, an account system to save your typing speed history, and user-configurable features such as themes, sounds, a smooth caret, and more. Monkeytype attempts to emulate a natural typing experience during a typing test by unobtrusively presenting the text prompts and displaying typed characters in place, providing straightforward, real-time feedback on typos, speed, and accuracy.
+PromptPractice is a fork of the upstream project, with custom branding and rare vax easter eggs. Technical identifiers and existing external service URLs retain their upstream names.
+
+Standard English time/word tests have a 0.2% chance per word of showing `vax`. On 5% of page loads, a dismissible accent strip at the top shows `vax is the goat`. The sentence is never added to typing vocabulary. Ads, ad prompts and the merch banner are removed.
+
+PromptPractice is a minimalistic and customizable [typing test](https://www.monkeytype.com). It features many test modes, an account system to save your typing speed history, and user-configurable features such as themes, sounds, a smooth caret, and more. PromptPractice attempts to emulate a natural typing experience during a typing test by unobtrusively presenting the text prompts and displaying typed characters in place, providing straightforward, real-time feedback on typos, speed, and accuracy.
 
 # Features
 
-- Minimalistic design, with optional advertisements and focus mode while typing
+- Minimalistic design, without advertisements, and focus mode while typing
 - Type what you see, see what you type
 - Live errors, wpm, and accuracy displays
 - A variety of test lengths and languages
@@ -43,7 +48,7 @@ Monkeytype is a minimalistic and customizable [typing test](https://www.monkeyty
 
 # Discord bot
 
-On the [Monkeytype Discord server](https://www.discord.gg/monkeytype), we added a Discord bot to auto-assign optional roles based on typing performance and challenge completion. You can find its code over at https://github.com/monkeytypegame/monkeytype-bot.
+On the [upstream Discord server](https://www.discord.gg/monkeytype), we added a Discord bot to auto-assign optional roles based on typing performance and challenge completion. You can find its code over at https://github.com/monkeytypegame/monkeytype-bot.
 
 # Bug report or Feature request
 

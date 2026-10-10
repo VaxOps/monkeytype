@@ -41,7 +41,7 @@ async function getLatest(): Promise<PSA[] | null> {
     if (envConfig.authProvider === "local") {
       addBanner({
         level: "error",
-        text: "Your local Monkeytype server is unavailable. Contact your instance administrator.",
+        text: "Your local PromptPractice server is unavailable. Contact your instance administrator.",
         icon: "fas fa-exclamation-triangle",
       });
       return null;

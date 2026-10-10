@@ -188,8 +188,7 @@ export function SettingsPage(): JSXElement {
             <SearchableAutoSetting key="showKeyTips" />
             <SearchableAutoSetting key="showOutOfFocusWarning" />
             <SearchableAutoSetting key="capsLockWarning" />
-            <SearchableAutoSetting key="showAverage" />
-            <SearchableAutoSetting key="ads" />
+            <SearchableAutoSetting key="showAverage" />{" "}
           </Section>
           <Section title="danger zone">
             <ImportExport />

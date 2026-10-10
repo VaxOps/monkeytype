@@ -23,7 +23,6 @@ import {
   clearAllNotifications,
   showSuccessNotification,
 } from "../states/notifications";
-import * as VideoAdPopup from "../popups/video-ad-popup";
 import { Command, CommandlineListKey, CommandsSubgroup } from "./types";
 import { buildCommandForConfigKey } from "./util";
 import { CommandlineConfigMetadataObject } from "./commandline-metadata";
@@ -36,8 +35,6 @@ import {
 } from "../components/layout/overlays/FpsCounter";
 import { applyConfigFromJson } from "../config/lifecycle";
 import { getLastEventLog } from "../states/test";
-
-const adsCommands = buildCommands("ads");
 
 export const commands: CommandsSubgroup = {
   title: "",
@@ -206,21 +203,9 @@ export const commands: CommandsSubgroup = {
       "monkey",
     ),
 
-    //danger zone
-    ...adsCommands,
-
     //other
     ...LoadChallengeCommands,
     ...NavigationCommands,
-    {
-      id: "watchVideoAd",
-      display: "Watch video ad",
-      alias: "support donate",
-      icon: "fa-ad",
-      exec: (): void => {
-        void VideoAdPopup.show();
-      },
-    },
     {
       id: "importSettingsJSON",
       display: "Import settings JSON",
@@ -369,7 +354,7 @@ const lists: Record<CommandlineListKey, CommandsSubgroup | undefined> = {
   minBurst: MinBurstCommands[0]?.subgroup,
   funbox: FunboxCommands[0]?.subgroup,
   tags: TagsCommands[0]?.subgroup,
-  ads: adsCommands[0]?.subgroup,
+  ads: undefined,
 };
 
 const subgroupByConfigKey = Object.fromEntries(

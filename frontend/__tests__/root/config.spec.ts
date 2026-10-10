@@ -309,17 +309,24 @@ describe("Config", () => {
 
     it("calls afterSet", () => {
       //GIVEN
-      isDevEnvironmentMock.mockReturnValue(false);
-      replaceConfig({ ads: "off" });
+      replaceConfig({ mode: "words", paceCaret: "pb" });
 
       //WHEN
-      Config.setConfig("ads", "sellout");
+      Config.setConfig("mode", "zen");
 
       //THEN
       expect(notificationAddMock).toHaveBeenCalledWith(
-        "Ad settings changed. Refreshing...",
+        "Pace caret will not work with zen mode.",
       );
-      expect(miscReloadAfterMock).toHaveBeenCalledWith(3);
+    });
+
+    it("keeps ads disabled without ad prompts or reloads", () => {
+      isDevEnvironmentMock.mockReturnValue(false);
+      replaceConfig({ ads: "off" });
+      Config.setConfig("ads", "sellout");
+      expect(getConfig().ads).toBe("off");
+      expect(notificationAddMock).not.toHaveBeenCalled();
+      expect(miscReloadAfterMock).not.toHaveBeenCalled();
     });
   });
 
