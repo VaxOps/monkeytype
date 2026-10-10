@@ -120,7 +120,7 @@ Local accounts use email addresses as login identifiers; ownership is not verifi
 
 Change feature settings in `docker/backend-configuration.local.json` and restart the backend. Set `HTTP_PORT` and matching `BASE_URL` when changing the localhost port. Registration can be disabled with `users.signUp`; existing users can still log in.
 
-The top accent banner appears on 10% of page loads, choosing one of five vax sentences. Customize its text with `VAX_BANNER_MESSAGES`, a JSON array of nonempty strings; leave unset/blank for defaults, or use `[]` to disable it. These messages are never added to the typing vocabulary. The separate rare `vax` word remains at 0.2% per eligible English word.
+The top accent banner is always visible, including during tests, and cannot be dismissed. Each page load randomly selects one message from 16 approved developer/typing-practice sentences plus `VAX_BANNER_MESSAGES` (five defaults, 21 total). Navigation and new/repeated tests keep the same message. Customize the vax portion with `VAX_BANNER_MESSAGES`, a JSON array of nonempty strings; leave unset/blank for defaults, or use `[]` to keep only the 16 practice messages. Selection is uniform across the combined list (default vax share: 5/21). These messages are never added to the typing vocabulary. The separate rare `vax` word remains at 0.2% per eligible English word.
 
 For an explicit local environment file, copy `docker/example.local.env` to `docker/.env`, edit it, then rebuild and deploy from the repository root:
 

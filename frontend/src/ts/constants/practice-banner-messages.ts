@@ -1,0 +1,18 @@
+export const practiceBannerMessages = [
+  "practice typing now. give your next ai prompt fewer typos.",
+  "your fingers are fast. the ci pipeline remains unimpressed.",
+  "practice makes perfect. code review requests one more change.",
+  "your fingers just shipped a performance improvement.",
+  "your typos are just undocumented features.",
+  "one more typing test. one less typo in your next prompt.",
+  "your team lead will appreciate the clearer prompts. your keyboard takes the credit.",
+  "the build is green. perfect time for some typing practice.",
+  "typing practice: upgrading the developer, not the dependencies.",
+  "your fingers are deploying letters directly to production.",
+  "your next ai prompt deserves better than “fix teh bug.”",
+  "backspace: the rollback strategy that actually gets tested.",
+  "practice your typing. trust the process. distrust the cache.",
+  "your accuracy is improving. even the logs look impressed.",
+  "your team lead asked for clearer prompts. fewer typos is a start.",
+  "achievement unlocked: finishing a typing test without checking slack.",
+];
