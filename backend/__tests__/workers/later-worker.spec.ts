@@ -1,8 +1,30 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import * as LaterWorker from "../../src/workers/later-worker";
+import { getCachedConfiguration } from "../../src/init/configuration";
+import { WeeklyXpLeaderboard } from "../../src/services/weekly-xp-leaderboard";
 const calculateXpReward = LaterWorker.__testing.calculateXpReward;
 
 describe("later-worker", () => {
+  it("skips weekly rewards when a leaderboard has no reward brackets", async () => {
+    const configuration = await getCachedConfiguration(false);
+    const original = configuration.leaderboards.weeklyXp;
+    const getResults = vi.spyOn(WeeklyXpLeaderboard.prototype, "getResults");
+    try {
+      configuration.leaderboards.weeklyXp = {
+        ...original,
+        enabled: true,
+        xpRewardBrackets: [],
+      };
+      await LaterWorker.__testing.handleWeeklyXpLeaderboardResults({
+        lastWeekTimestamp: 0,
+      });
+      expect(getResults).not.toHaveBeenCalled();
+    } finally {
+      configuration.leaderboards.weeklyXp = original;
+      getResults.mockRestore();
+    }
+  });
+
   describe("calculateXpReward", () => {
     it("should return the correct XP reward for a given rank", () => {
       //GIVEN

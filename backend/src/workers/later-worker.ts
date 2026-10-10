@@ -107,7 +107,7 @@ async function handleWeeklyXpLeaderboardResults(
   } = await getCachedConfiguration(false);
 
   const { enabled, xpRewardBrackets } = weeklyXpConfig;
-  if (!enabled || xpRewardBrackets.length < 0) {
+  if (!enabled || xpRewardBrackets.length === 0) {
     return;
   }
 
@@ -221,4 +221,5 @@ export default (redisConnection?: IORedis.Redis): Worker => {
 
 export const __testing = {
   calculateXpReward,
+  handleWeeklyXpLeaderboardResults,
 };

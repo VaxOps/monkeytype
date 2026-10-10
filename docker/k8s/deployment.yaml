@@ -48,7 +48,14 @@ data:
             { "language": "english", "mode": "time", "mode2": "60" }
           ]
         },
-        "leaderboards": { "minTimeTyping": 0 }
+        "leaderboards": {
+          "minTimeTyping": 0,
+          "weeklyXp": {
+            "enabled": true,
+            "expirationTimeInDays": 15,
+            "xpRewardBrackets": []
+          }
+        }
       }
     }
 ---

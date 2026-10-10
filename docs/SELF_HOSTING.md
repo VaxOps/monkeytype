@@ -112,7 +112,7 @@ From a checkout of this repository, run:
 docker compose -f docker/docker-compose.local.yml up --build -d
 ```
 
-Open `http://localhost:8080`. Registration, login, profiles, saved results, XP progression, all-time leaderboards and daily English 15/60-second leaderboards are enabled. The first build downloads dependencies and images. Backend/databases use an internal Docker network without internet access; the frontend has a separate network for its published localhost port. Its content security policy restricts browser resource requests to this instance. MongoDB stores accounts, password hashes and results; Redis stores sessions and daily rankings. No Firebase credentials, reCAPTCHA or email server are required.
+Open `http://localhost:8080`. Registration, login, profiles, saved results, XP progression, all-time leaderboards, daily English 15/60-second leaderboards and weekly XP leaderboards are enabled. The first build downloads dependencies and images. Backend/databases use an internal Docker network without internet access; the frontend has a separate network for its published localhost port. Its content security policy restricts browser resource requests to this instance. MongoDB stores accounts, password hashes and results; Redis stores sessions and daily rankings. No Firebase credentials, reCAPTCHA or email server are required.
 
 For Kubernetes frontend/backend manifests and plain `docker build` commands, see [the Kubernetes deployment guide](../docker/k8s/README.md). MongoDB and Redis are managed separately in that deployment.
 
@@ -131,7 +131,7 @@ docker compose --env-file docker/.env -f docker/docker-compose.local.yml up -d -
 
 Banner text is baked into the frontend image: changing the environment file requires rebuilding. Invalid JSON or non-string/blank messages fail the build. For plain Docker builds, pass `--build-arg VAX_BANNER_MESSAGES='["your vax sentence"]'` when building the frontend target.
 
-XP uses PromptPractice's existing calculation with `users.xp.enabled=true` and `gainMultiplier=1`. Eligible saved tests award XP; zen mode does not. Daily/streak/funbox bonuses and weekly XP leaderboards remain configurable and are disabled in this preset. Previously saved tests are not awarded XP retroactively.
+XP uses PromptPractice's existing calculation with `users.xp.enabled=true` and `gainMultiplier=1`. Eligible saved tests award XP; zen mode does not. Weekly XP leaderboards count eligible XP earned after enabling the feature, retain each week for 15 days and have no placement rewards. Daily/streak/funbox bonuses remain disabled in this preset. Previously saved tests are not awarded XP retroactively.
 
 Daily rankings update when an eligible result is saved; all-time rankings refresh approximately every 15 minutes. Internet-dependent test sources such as Wikipedia and poetry are unavailable on a closed network.
 
